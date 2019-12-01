@@ -5,6 +5,7 @@ let SYMBOL_WIDTH
 
 if (navigator.userAgent.indexOf('IEMobile') !== -1) {
   SYMBOL_WIDTH = 60
+  document.getElementsByTagName('ul')[0].style.background='white'
 }
 else {
   SYMBOL_WIDTH = 24
