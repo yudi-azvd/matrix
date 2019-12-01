@@ -5,5 +5,5 @@
 </h3>
 
 
-Check it out at https://yudi-azvd.github.io/matrix/index.html.
+Check it out at https://yudi-azvd.github.io/matrix/.
 
