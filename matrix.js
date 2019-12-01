@@ -1,7 +1,15 @@
 const matrixCanva = document.getElementById('matrixCanva')
 const WINDOW_HEIGHT = window.innerHeight
 const WINDOW_WIDTH = window.innerWidth
-const SYMBOL_WIDTH = 24
+let SYMBOL_WIDTH
+
+if (navigator.userAgent.match(/Android/i)
+|| navigator.userAgent.match(/iPhone/i)) {
+  SYMBOL_WIDTH = 60
+}
+else {
+  SYMBOL_WIDTH = 24
+}
 
 
 fillMatrixWithStreams()
