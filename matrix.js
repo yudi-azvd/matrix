@@ -3,10 +3,11 @@ const WINDOW_HEIGHT = window.innerHeight
 const WINDOW_WIDTH = window.innerWidth
 let SYMBOL_WIDTH
 
-if (navigator.userAgent.indexOf('IEMobile') !== 1) {
+if (navigator.userAgent.indexOf('IEMobile') !== -1) {
   SYMBOL_WIDTH = 60
 }
 else {
+  console.log('NOT MOBILE')
   SYMBOL_WIDTH = 24
 }
 
@@ -14,7 +15,7 @@ else {
 fillMatrixWithStreams()
 
 function fillMatrixWithStreams() {
-  const positions = Math.ceil(WINDOW_WIDTH / SYMBOL_WIDTH)
+  const positions = Math.floor(WINDOW_WIDTH / SYMBOL_WIDTH)
 
   let xPosition
   for (let p = 0; p < positions; ++p) {
