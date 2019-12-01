@@ -6,6 +6,7 @@ let SYMBOL_WIDTH
 if (navigator.userAgent.match(/Android/i)
 || navigator.userAgent.match(/iPhone/i)) {
   SYMBOL_WIDTH = 60
+  document.getElementsByTagName('body')[0].style.background='white'
 }
 else {
   SYMBOL_WIDTH = 24
