@@ -7,12 +7,12 @@ if (navigator.userAgent.indexOf('IEMobile') !== -1) {
   SYMBOL_WIDTH = 60
 }
 else {
-  console.log('NOT MOBILE')
   SYMBOL_WIDTH = 24
 }
 
 
 fillMatrixWithStreams()
+
 
 function fillMatrixWithStreams() {
   const positions = Math.floor(WINDOW_WIDTH / SYMBOL_WIDTH)
@@ -53,7 +53,9 @@ function newStream(xPosition) {
     stream.append(newSymbolHolder())
   }
 
-  stream.lastChild.classList = 'first'
+  if (new Date().getTime() % 2 === 0) {
+    stream.lastChild.classList = 'first'
+  }
 
   const symbolHeight = parseInt(stream.firstChild.style.height)
 
