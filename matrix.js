@@ -4,8 +4,9 @@ const WINDOW_WIDTH = window.innerWidth
 let SYMBOL_WIDTH
 
 if (navigator.userAgent.indexOf('IEMobile') !== -1
-|| navigator.userAgent.match(/Android/i)
-|| navigator.userAgent.match(/iPhone/i)) {
+  || navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/iPhone/i)) {
+    
   SYMBOL_WIDTH = 60
 }
 else {
