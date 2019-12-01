@@ -3,8 +3,7 @@ const WINDOW_HEIGHT = window.innerHeight
 const WINDOW_WIDTH = window.innerWidth
 let SYMBOL_WIDTH
 
-if (navigator.userAgent.match(/Android/i)
-|| navigator.userAgent.match(/iPhone/i)) {
+if (navigator.userAgent.indexOf('IEMobile') !== 1) {
   SYMBOL_WIDTH = 60
   document.getElementsByTagName('body')[0].style.background='white'
 }
