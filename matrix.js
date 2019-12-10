@@ -14,11 +14,14 @@ else {
 }
 
 
-fillMatrixWithSequences()
-requestAnimationFrame(updateSequences)
+fillMatrixWithSequences(matrixCanva)
+
+requestAnimationFrame(() => {
+  updateSequences(matrixCanva)
+})
 
 
-function fillMatrixWithSequences() {
+function fillMatrixWithSequences(matrixCanva) {
   const positions = Math.floor(WINDOW_WIDTH / SYMBOL_WIDTH)
 
   let xPosition
@@ -29,7 +32,7 @@ function fillMatrixWithSequences() {
 }
 
 
-function updateSequences() {
+function updateSequences(matrixCanva) {
   matrixCanva.childNodes.forEach(stream => {
     let distanceFromTop = parseInt(stream.style.top)
 
@@ -40,7 +43,9 @@ function updateSequences() {
     stream.style.top = distanceFromTop + stream.displacement
   })
 
-  requestAnimationFrame(updateSequences)
+  requestAnimationFrame(() => {
+    updateSequences(matrixCanva)
+  })
 }
 
 
