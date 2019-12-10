@@ -50,32 +50,32 @@ function updateSequences(matrixCanva) {
 
 
 function newSequence(xPosition) {
+  const sequence = document.createElement('ul')
   const length = Math.floor(Math.random()*5+15)
-  const stream = document.createElement('ul')
   const displacement = Math.floor(Math.random()*8+8)
 
-  stream.style.position = 'absolute'
-  stream.classList = 'sequence'
+  sequence.style.position = 'absolute'
+  sequence.classList = 'sequence'
   
   for (let i = 0; i < length; ++i) {
-    stream.append(newSymbolHolder())
+    sequence.append(newSymbolHolder())
   }
 
   if (new Date().getTime() % 2 === 0) {
-    stream.lastChild.classList = 'first'
+    sequence.lastChild.classList = 'first'
   }
 
-  const symbolHeight = parseInt(stream.firstChild.style.height)
+  const symbolHeight = parseInt(sequence.firstChild.style.height)
 
-  stream.style.left = xPosition
-  stream.style.top = 
+  sequence.style.left = xPosition
+  sequence.style.top = 
     - symbolHeight*length 
     - Math.floor(Math.random()*1000+500)
 
-  stream.displacement = displacement
-  stream.height = symbolHeight*length
+  sequence.displacement = displacement
+  sequence.height = symbolHeight*length
 
-  return stream
+  return sequence
 }
 
 
