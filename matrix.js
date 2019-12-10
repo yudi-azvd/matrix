@@ -52,7 +52,7 @@ function updateSequences(matrixCanva) {
 function newSequence(xPosition) {
   const sequence = document.createElement('ul')
   const length = Math.floor(Math.random()*5+15)
-  const displacement = Math.floor(Math.random()*8+8)
+  const displacement = Math.floor(Math.random()*1+2)
 
   sequence.style.position = 'absolute'
   sequence.classList = 'sequence'
@@ -90,8 +90,9 @@ function newSymbolHolder() {
   symbolHolder.style.width = symbolWidth
 
   setInterval(() => 
-    symbolHolder.innerText = newSymbol()
-  , timeInterval)
+    symbolHolder.innerText = newSymbol(), 
+    timeInterval
+  )
 
   return symbolHolder
 }
