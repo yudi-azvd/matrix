@@ -17,7 +17,7 @@ h1 {
   color: #0f0;
 }
 
-ul.stream {
+ul.sequence {
   margin: 0;
   padding: 0;
   
@@ -25,7 +25,7 @@ ul.stream {
   display: inline;
 }
 
-ul.stream li {
+ul.sequence li {
   white-space: nowrap;
   font-weight: bold;
 
@@ -38,7 +38,7 @@ ul.stream li {
     0px 0px 5px rgb(6, 75, 23);
 }
 
-ul.stream li.first {
+ul.sequence li.first {
   color: rgb(168, 255, 205);
   text-shadow:
     0 0px 10px rgb(30, 110, 80),

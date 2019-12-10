@@ -14,22 +14,22 @@ else {
 }
 
 
-fillMatrixWithStreams()
+fillMatrixWithSequences()
+requestAnimationFrame(updateSequences)
 
 
-function fillMatrixWithStreams() {
+function fillMatrixWithSequences() {
   const positions = Math.floor(WINDOW_WIDTH / SYMBOL_WIDTH)
 
   let xPosition
   for (let p = 0; p < positions; ++p) {
     xPosition = SYMBOL_WIDTH*p
-    matrixCanva.append(newStream(xPosition))
+    matrixCanva.append(newSequence(xPosition))
   }
 }
 
-requestAnimationFrame(updateStreams)
 
-function updateStreams() {
+function updateSequences() {
   matrixCanva.childNodes.forEach(stream => {
     let distanceFromTop = parseInt(stream.style.top)
 
@@ -40,17 +40,17 @@ function updateStreams() {
     stream.style.top = distanceFromTop + stream.displacement
   })
 
-  requestAnimationFrame(updateStreams)
+  requestAnimationFrame(updateSequences)
 }
 
 
-function newStream(xPosition) {
+function newSequence(xPosition) {
   const length = Math.floor(Math.random()*5+15)
   const stream = document.createElement('ul')
   const displacement = Math.floor(Math.random()*8+8)
 
   stream.style.position = 'absolute'
-  stream.classList = 'stream'
+  stream.classList = 'sequence'
   
   for (let i = 0; i < length; ++i) {
     stream.append(newSymbolHolder())
