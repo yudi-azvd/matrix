@@ -1,4 +1,4 @@
-# Rain Code from The Matrix movie
+# Code rain from The Matrix movie
 
 ### Preview
 <h3><img align="center" src="/.github/matrix.gif" alt="matrix animation gif" width="300">
