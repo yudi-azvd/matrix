@@ -1,0 +1,20 @@
+{
+  "name": "matrix",
+  "version": "1.0.0",
+  "description": "### Preview <h3><img align=\"center\" src=\"/.github/matrix.gif\" alt=\"matrix animation gif\" width=\"300\"> </h3>",
+  "main": "matrix.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "git add -A && git commit -m \"commit to deploy\" && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudi-azvd/matrix.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yudi-azvd/matrix/issues"
+  },
+  "homepage": "https://github.com/yudi-azvd/matrix#readme"
+}
