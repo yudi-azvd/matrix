@@ -25,9 +25,9 @@ function updateMatrix(matrix) {
     }
   }
 
-  // requestAnimationFrame(function() {
-  //   updateMatrix(matrix)
-  // })
+  requestAnimationFrame(function() {
+    updateMatrix(matrix)
+  })
 }
 
 function fillMatrixWithColumns() {
