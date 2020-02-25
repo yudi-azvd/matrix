@@ -24,12 +24,14 @@ ul li {
     0px 0px 10px rgba(50, 202, 104, .5),
     0px 0px 10px rgba(6, 75, 23, 0.7),
     0px 0px 5px rgba(6, 75, 23, 0.7),
-    0px 0px 15px rgba(6, 75, 23, 0.7);
+    0px 0px 15px rgba(6, 75, 23, 1);
 }
 
 ul li.base {
   color: rgb(168, 255, 205);
+
   text-shadow:
     0 0px 10px rgb(30, 110, 80),
+    0 0px 10px rgb(168, 255, 205, .7),
     0 0px 5px rgb(30, 110, 80);
 }

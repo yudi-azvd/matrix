@@ -25,16 +25,17 @@ function updateMatrix(matrix) {
     }
   }
 
-  requestAnimationFrame(function() {
-    updateMatrix(matrix)
-  })
+  // requestAnimationFrame(function() {
+  //   updateMatrix(matrix)
+  // })
 }
 
 function fillMatrixWithColumns() {
   var numberOfColumns = Math.floor(SCREEN_WIDTH / SYMBOL_HOLDER_WIDTH)
+  var xPosition
 
   for(var i = 0; i < numberOfColumns; i++) {
-    var xPosition = SYMBOL_HOLDER_WIDTH*i
+    xPosition = SYMBOL_HOLDER_WIDTH*i
     matrix.append(createColumn(xPosition))
   }
 }
@@ -61,8 +62,8 @@ function createColumn(xPosition) {
   column.height = length*symbolHolderHeight
   column.length = length
   column.displacement = displacement
-  column.style.left = x  // + 'px'
-  column.style.top = 
+  column.style.left = x
+  column.style.top = 0
     - length * symbolHolderHeight
     - 1000
 
