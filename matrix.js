@@ -65,7 +65,7 @@ function createColumn(xPosition) {
   column.style.left = x
   column.style.top = 0
     - length * symbolHolderHeight
-    - 1000
+    - 40 * getRandomInt(50, 50)
 
   return column
 }
