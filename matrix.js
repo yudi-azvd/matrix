@@ -5,23 +5,44 @@ const context = canvas.getContext('2d')
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
-context.shadowOffsetY = -4
-context.shadowOffsetX = -4
-context.shadowBlur = 2
-context.shadowColor = 'rgba(0, 255, 255, 0.5)'
+context.shadowOffsetY = 0
+context.shadowOffsetX = 0
+context.shadowBlur = 10
+context.shadowColor = 'rgba(50, 202, 104, .5)'
 
 context.font = 'bold 60px Times New Roman'
-context.fillStyle = '#fff'
-context.fillText('hey', 10, 60)
+context.fillStyle = 'rgba(50, 202, 104, 1)'
+
+const symbolHolder = createSymbolHolder()
 
 var i = 0;
 
 setInterval(() => {
-  context.clearRect(0, 0, canvas.width, canvas.height)
-  context.fillText(createSymbol(), 10, ++i*60)
+  clearScreen()
+  context.fillText(symbolHolder.symbol, 10, ++i*2)
 
   if (i*60 > canvas.height) i = 0
-}, 500)
+}, 50)
+
+function createSymbolHolder() {
+  const symbolHolder = {
+    symbol: createSymbol(),
+    timeInterval: getRandomInt(500, 900)
+  }
+
+  // Outra ideia é atualizar com base no "frame count"
+  function updateSymbol() {
+    symbolHolder.symbol = createSymbol()
+  }
+
+  setInterval(updateSymbol, symbolHolder.timeInterval)
+
+  return symbolHolder
+}
+
+function clearScreen() {
+  context.clearRect(0, 0, canvas.width, canvas.height)
+}
 
 function createSymbol() {
   return String.fromCharCode(getRandomInt(0x030A0, 95))
