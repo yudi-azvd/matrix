@@ -19,10 +19,10 @@ var i = 0;
 
 setInterval(() => {
   clearScreen()
-  context.fillText(symbolHolder.symbol, 10, ++i*2)
+  context.fillText(symbolHolder.symbol, 10, ++i*60)
 
   if (i*60 > canvas.height) i = 0
-}, 50)
+}, 500)
 
 function createSymbolHolder() {
   const symbolHolder = {
