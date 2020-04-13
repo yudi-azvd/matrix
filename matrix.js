@@ -2,7 +2,17 @@ var matrix = document.querySelector('#matrix')
 var SCREEN_WIDTH = window.innerWidth
 var SCREEN_HEIGHT = window.innerHeight
 
-var SYMBOL_HOLDER_WIDTH = 36
+var SYMBOL_HOLDER_WIDTH = 32
+
+if (navigator.userAgent.indexOf('IEMobile') !== -1
+  || navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/iPhone/i)) {
+    
+  SYMBOL_HOLDER_WIDTH = 60
+}
+else {
+  SYMBOL_HOLDER_WIDTH = 32
+}
 
 fillMatrixWithColumns(matrix)
 
@@ -43,7 +53,7 @@ function fillMatrixWithColumns() {
 function createColumn(xPosition) {
   var column = document.createElement('ul')
   var length = getRandomInt(10, 20)
-  var displacement = getRandomInt(5, 7)
+  var displacement = getRandomInt(3, 5)
   var hasShinyBase = getRandomInt(0, 2) == 1
   var x = xPosition
 
@@ -65,14 +75,14 @@ function createColumn(xPosition) {
   column.style.left = x
   column.style.top = 0
     - length * symbolHolderHeight
-    - 40 * getRandomInt(50, 50)
+    - 40 * getRandomInt(20, 50)
 
   return column
 }
 
 function createSymbolHolder() {
   var symbolHolder = document.createElement('li')
-  var timeInterval = getRandomInt(500, 900)
+  var timeInterval = getRandomInt(300, 900)
 
   function updateSymbol() {
     symbolHolder.innerText = createSymbol()
