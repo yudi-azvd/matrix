@@ -1,33 +1,114 @@
 const canvas = document.getElementById('canvas')
+
 /** @type {CanvasRenderingContext2D} */
 const context = canvas.getContext('2d')
+
+const FONT_SIZE = 60
 
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
-context.shadowOffsetY = 0
+context.shadowOffsetY = -3
 context.shadowOffsetX = 0
-context.shadowBlur = 10
+context.shadowBlur = 20
 context.shadowColor = 'rgba(50, 202, 104, .5)'
 
-context.font = 'bold 60px Times New Roman'
+context.font = `bold ${FONT_SIZE}px Times New Roman`
 context.fillStyle = 'rgba(50, 202, 104, 1)'
 
-const symbolHolder = createSymbolHolder()
+const column = createColumn(0, -100)
+
+const matrix = createMatrix()
+
+
+function updateMatrix() {
+  clearContext()
+
+  // column.render()
+
+  matrix.render()
+  
+  requestAnimationFrame(updateMatrix)
+}
+
+updateMatrix()
 
 var i = 0;
+// setInterval(() => {
+//   clearContext()
 
-setInterval(() => {
-  clearScreen()
-  context.fillText(symbolHolder.symbol, 10, ++i*60)
+//   column.render()
 
-  if (i*60 > canvas.height) i = 0
-}, 500)
+//   // column.symbolHolders.forEach(symbolHolder => {
+//   //   // holder.symbol
+//   //   // context.fillText(symbolHolder.symbol, 0, ++i*60)
+//   //   context.fillText(symbolHolder.symbol, 0, ++i*FONT_SIZE)
+//   // })
+
+//   // if (i*60 > canvas.height) i = 0
+// }, 1000)
+
+function createMatrix() {
+  const matrix = {
+    columns: [],
+    numberOfColumns: window.innerWidth/FONT_SIZE,
+    render
+  }
+
+  let columnHeight = 0
+  for (let i = 0; i < matrix.numberOfColumns; i++) {
+    columnHeight = getRandomInt(5, 10)
+    matrix.columns.push(createColumn(i*FONT_SIZE, -columnHeight))    
+  }
+
+  function render() {
+    matrix.columns.forEach(column => column.render())
+  }
+  
+  return matrix
+}
+
+/**
+ * @param {number} x 
+ * @param {number} initialY
+ */
+function createColumn(x, initialY) {
+  const height = getRandomInt(5, 10)
+
+  const column = {
+    height,
+    x,
+    y: initialY - height*FONT_SIZE,
+    verticalDisplacement: FONT_SIZE/getRandomInt(5, 8),
+    symbolHolders: [],
+    render
+  }
+
+  for (let i = 0; i < column.height; ++i) {
+    column.symbolHolders.push(createSymbolHolder())
+  }
+
+  function render() {
+    column.y += column.verticalDisplacement
+
+    if (column.y > window.innerHeight) {
+      column.y = -column.height*FONT_SIZE
+    }
+
+    column.symbolHolders.forEach((holder, i) => 
+      holder.render(column.x, column.y + i*FONT_SIZE)
+    )
+  }
+
+  return column
+}
+
 
 function createSymbolHolder() {
   const symbolHolder = {
     symbol: createSymbol(),
-    timeInterval: getRandomInt(500, 900)
+    timeInterval: getRandomInt(500, 900),
+    render,
   }
 
   // Outra ideia é atualizar com base no "frame count"
@@ -37,17 +118,35 @@ function createSymbolHolder() {
 
   setInterval(updateSymbol, symbolHolder.timeInterval)
 
+  function render(x, y) {
+    // const time = new Date().getTime()
+    // if (time % 7 == 0) {
+    //   updateSymbol()
+    // }
+
+    context.fillText(symbolHolder.symbol, x, y)
+  }
+
   return symbolHolder
 }
 
-function clearScreen() {
+
+function createSymbol() {
+  const baseKatakanaCharacterCode = 0x030A0
+  return String.fromCharCode(getRandomInt(baseKatakanaCharacterCode, 95))
+}
+
+
+function clearContext() {
   context.clearRect(0, 0, canvas.width, canvas.height)
 }
 
-function createSymbol() {
-  return String.fromCharCode(getRandomInt(0x030A0, 95))
-}
 
+/**
+ * @param {number} base 
+ * @param {number} amplitude 
+ * @returns {number} random number
+ */
 function getRandomInt(base, amplitude) {
   return base + Math.floor(Math.random()*amplitude)
 }
