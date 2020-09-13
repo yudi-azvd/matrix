@@ -3,7 +3,7 @@ const canvas = document.getElementById('canvas')
 /** @type {CanvasRenderingContext2D} */
 const context = canvas.getContext('2d')
 
-const FONT_SIZE = 60
+const FONT_SIZE = 100
 
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
@@ -11,20 +11,17 @@ canvas.height = window.innerHeight
 context.shadowOffsetY = -3
 context.shadowOffsetX = 0
 context.shadowBlur = 20
-context.shadowColor = 'rgba(50, 202, 104, .5)'
+context.shadowColor = 
+  `rgba(50, 202, 104, .7), rgba(150, 0, 1, .8)`
 
 context.font = `bold ${FONT_SIZE}px Times New Roman`
 context.fillStyle = 'rgba(50, 202, 104, 1)'
 
-const column = createColumn(0, -100)
 
 const matrix = createMatrix()
 
-
 function updateMatrix() {
   clearContext()
-
-  // column.render()
 
   matrix.render()
   
@@ -32,21 +29,6 @@ function updateMatrix() {
 }
 
 updateMatrix()
-
-var i = 0;
-// setInterval(() => {
-//   clearContext()
-
-//   column.render()
-
-//   // column.symbolHolders.forEach(symbolHolder => {
-//   //   // holder.symbol
-//   //   // context.fillText(symbolHolder.symbol, 0, ++i*60)
-//   //   context.fillText(symbolHolder.symbol, 0, ++i*FONT_SIZE)
-//   // })
-
-//   // if (i*60 > canvas.height) i = 0
-// }, 1000)
 
 function createMatrix() {
   const matrix = {
@@ -57,7 +39,7 @@ function createMatrix() {
 
   let columnHeight = 0
   for (let i = 0; i < matrix.numberOfColumns; i++) {
-    columnHeight = getRandomInt(5, 10)
+    columnHeight = 4*getRandomInt(5, 10)
     matrix.columns.push(createColumn(i*FONT_SIZE, -columnHeight))    
   }
 
@@ -73,13 +55,13 @@ function createMatrix() {
  * @param {number} initialY
  */
 function createColumn(x, initialY) {
-  const height = getRandomInt(5, 10)
+  const height = getRandomInt(15, 10)
 
   const column = {
     height,
     x,
     y: initialY - height*FONT_SIZE,
-    verticalDisplacement: FONT_SIZE/getRandomInt(5, 8),
+    verticalDisplacement: FONT_SIZE/getRandomInt(8, 8),
     symbolHolders: [],
     render
   }
@@ -105,6 +87,7 @@ function createColumn(x, initialY) {
 
 
 function createSymbolHolder() {
+  let time
   const symbolHolder = {
     symbol: createSymbol(),
     timeInterval: getRandomInt(500, 900),
@@ -119,8 +102,8 @@ function createSymbolHolder() {
   setInterval(updateSymbol, symbolHolder.timeInterval)
 
   function render(x, y) {
-    // const time = new Date().getTime()
-    // if (time % 7 == 0) {
+    // time = new Date().getTime()
+    // if (time % 32 == 0) {
     //   updateSymbol()
     // }
 
@@ -133,7 +116,9 @@ function createSymbolHolder() {
 
 function createSymbol() {
   const baseKatakanaCharacterCode = 0x030A0
-  return String.fromCharCode(getRandomInt(baseKatakanaCharacterCode, 95))
+  return String.fromCharCode(
+    getRandomInt(baseKatakanaCharacterCode, 95)
+  )
 }
 
 
