@@ -7,9 +7,6 @@
 #canvas {
   height: 100%;
   width: 100%;
-  image-rendering: pixelated;
-  image-rendering: crisp-edges;
-  image-rendering: -moz-crisp-edges;
   background-color: #000;
   display: block;
 }
