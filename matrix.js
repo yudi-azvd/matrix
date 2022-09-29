@@ -1,16 +1,27 @@
-const canvas = document.getElementById('canvas')
+const canvas = createCanvas(window.innerWidth, window.innerHeight)
 
 const characterPool = createCharacterPool()
 
 /** @type {CanvasRenderingContext2D} */
 const context = canvas.getContext('2d')
 
+// https://dev.to/pahund/how-to-fix-blurry-text-on-html-canvases-on-mobile-phones-3iep
+function createCanvas(width, height, set2dTransform = true) {
+  const ratio = Math.ceil(window.devicePixelRatio);
+  const canvas = document.getElementById('canvas')
+  canvas.width = width * ratio;
+  canvas.height = height * ratio;
+  canvas.style.width = `${width}px`;
+  canvas.style.height = `${height}px`;
+  if (set2dTransform) {
+    canvas.getContext('2d').setTransform(ratio, 0, 0, ratio, 0, 0);
+  }
+  return canvas;
+}
+
 const FONT_SIZE = 32
 
 let frameCount = 0
-
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
 
 context.shadowOffsetY = -3
 context.shadowOffsetX = 0
